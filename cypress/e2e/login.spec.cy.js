@@ -11,7 +11,8 @@ describe('Orange HRM Tests', () => {
       myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
       firstNameField: "[name='firstName']",
       middleNameFied: "[name='middleName']",
-      lastNameField: "[name='lastName']"
+      lastNameField: "[name='lastName']",
+      submitButton: "[type='submit']"
     
     }
   
@@ -26,6 +27,9 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.firstNameField).clear().type('Antonio')
     cy.get(selectorsList.middleNameFied).clear().type('Faustino')
     cy.get(selectorsList.lastNameField).clear().type('da Rocha Neto')
+    cy.get(selectorsList.submitButton).eq(0).click()
+    cy.get('body').should('contain', 'Exito')
+
     
   })
   it('Login - Fail', () => {
