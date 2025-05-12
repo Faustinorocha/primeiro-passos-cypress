@@ -6,17 +6,26 @@ describe('Orange HRM Tests', () => {
       usernameField: '[name="username"]',
       passwordField: '[name="password"]',
       loginButton: '[type="submit"]',
-      wrongCreadentialAlert: '[role="alert"]'
+      dashboardGrid: ".orangehrm-dashboard-grid",
+      wrongCreadentialAlert: '[role="alert"]',
+      myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
+      firstNameField: "[name='firstName']",
+      middleNameFied: "[name='middleName']",
+      lastNameField: "[name='lastName']"
     
     }
   
-  it('Login - Success', () => {
+  it.only('Login - Success', () => {
     cy.visit('/auth/login')
     cy.get(selectorsList.usernameField).type(userData.userSuccess.username)
     cy.get(selectorsList.passwordField).type(userData.userSuccess.password)
     cy.get(selectorsList.loginButton).click()
-    cy.get(':nth-child(2) > .oxd-main-menu-item > .oxd-text').click()
-    cy.get('.oxd-table-filter-header-title > .oxd-text')
+    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
+    cy.get(selectorsList.dashboardGrid)
+    cy.get(selectorsList.myInfoButton).click()
+    cy.get(selectorsList.firstNameField).clear().type('Antonio')
+    cy.get(selectorsList.middleNameFied).clear().type('Faustino')
+    cy.get(selectorsList.lastNameField).clear().type('da Rocha Neto')
     
   })
   it('Login - Fail', () => {
