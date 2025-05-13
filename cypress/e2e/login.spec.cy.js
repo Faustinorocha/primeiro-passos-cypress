@@ -12,8 +12,11 @@ describe('Orange HRM Tests', () => {
       firstNameField: "[name='firstName']",
       middleNameFied: "[name='middleName']",
       lastNameField: "[name='lastName']",
-      submitButton: "[type='submit']"
-    
+      submitButton: "[type='submit']",
+      comboboxnationalityselection: ":nth-child(5) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text--after > .oxd-icon",
+      comboboxmaritalselection: ":nth-child(5) > :nth-child(1) > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text-input",
+      nationalityselection: ":nth-child(4) > span",
+      maritalselection: ".oxd-select-dropdown > :nth-child(2) > span"
     }
   
   it.only('Login - Success', () => {
@@ -27,8 +30,12 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.firstNameField).clear().type('Antonio')
     cy.get(selectorsList.middleNameFied).clear().type('Faustino')
     cy.get(selectorsList.lastNameField).clear().type('da Rocha Neto')
+    cy.get(selectorsList.comboboxnationalityselection).click()
+    cy.get(selectorsList.nationalityselection).click()
+     cy.get(selectorsList.comboboxmaritalselection).click()
+    cy.get(selectorsList.maritalselection).click()
     cy.get(selectorsList.submitButton).eq(0).click()
-    cy.get('body').should('contain', 'Exito')
+    cy.get('body').should('contain', 'Success')
 
     
   })
