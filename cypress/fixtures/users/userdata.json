@@ -6,5 +6,11 @@
     "userFail": {
       "username": "teste",
       "password": "teste"
+    },
+    "nameInfoPage": {
+      "firstName": "Bebeto",
+      "meddleName": "Petro",
+      "lastName": "Neto"
     }
+
 }
