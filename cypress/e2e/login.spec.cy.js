@@ -1,9 +1,11 @@
 import userData from '../fixtures/users/userdata.json'
 import LoginPage from '../pages/loginPage'
-import MyInfoPage from '../pages/myInforPage.js'
+import MyInfoPage from '../pages/myInforPage'
+import DashboardPage from '../pages/dashboardPage'
 
 const loginPage = new LoginPage()
 const infoPage = new MyInfoPage()
+const dashboardpage = new DashboardPage()
 
 describe('Orange HRM Tests', () => {
 
@@ -11,8 +13,8 @@ describe('Orange HRM Tests', () => {
       // usernameField: '[name="username"]',
       // passwordField: '[name="password"]',
       // loginButton: '[type="submit"]',
-      dashboardGrid: ".orangehrm-dashboard-grid",
-      wrongCreadentialAlert: '[role="alert"]',
+      // dashboardGrid: ".orangehrm-dashboard-grid",
+      // wrongCreadentialAlert: '[role="alert"]',
       // myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
       // firstNameField: "[name='firstName']",
       // middleNameFied: "[name='middleName']",
@@ -24,15 +26,16 @@ describe('Orange HRM Tests', () => {
       // maritalselection: ".oxd-select-dropdown > :nth-child(3) > span"
     }
   
-  it.only('Login - Success', () => {
+  it('Login - Success', () => {
     loginPage.accessLoginPage()
     loginPage.loginWithUser(userData.userSuccess.username, userData.userSuccess.password)
     // cy.visit('/auth/login')
     // cy.get(selectorsList.usernameField).type(userData.userSuccess.username)
     // cy.get(selectorsList.passwordField).type(userData.userSuccess.password)
     // cy.get(selectorsList.loginButton).click()
-    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-    cy.get(selectorsList.dashboardGrid)
+    // cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
+    // cy.get(selectorsList.dashboardGrid)
+    dashboardpage.selectorslist()
     infoPage.accessInfoPage()
     infoPage.infoPageUser(userData.nameInfoPage.firstName, userData.nameInfoPage.meddleName, userData.nameInfoPage.lastName)
     // cy.get(selectorsList.myInfoButton).click()
@@ -49,10 +52,13 @@ describe('Orange HRM Tests', () => {
     
   })
   it('Login - Fail', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameField).type(userData.userFail.username)
-    cy.get(selectorsList.passwordField).type(userData.userFail.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.get(selectorsList.wrongCreadentialAlert)
+     loginPage.accessLoginPage()
+     loginPage.loginWithUser(userData.userFail.username, userData.userFail.password)
+     loginPage.checkwrong()
+    // cy.visit('/auth/login')
+    // cy.get(selectorsList.usernameField).type(userData.userFail.username)
+    // cy.get(selectorsList.passwordField).type(userData.userFail.password)
+    // cy.get(selectorsList.loginButton).click()
+    // cy.get(selectorsList.wrongCreadentialAlert)
   })
 })
