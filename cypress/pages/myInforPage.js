@@ -23,11 +23,11 @@ class MyInfoPage {
     }
 
 
-    infoPageUser() {
+    infoPageUser(firsName,middleName,lastName ) {
    
-      cy.get(this.selectorsListInfo().firstNameField).clear().type("pedro")
-      cy.get(this.selectorsListInfo().middleNameFied).clear().type("silva")
-      cy.get(this.selectorsListInfo().lastNameField).clear().type("bezerra")
+      cy.get(this.selectorsListInfo().firstNameField).clear().type(firsName)
+      cy.get(this.selectorsListInfo().middleNameFied).clear().type(middleName)
+      cy.get(this.selectorsListInfo().lastNameField).clear().type(lastName)
       cy.get(this.selectorsListInfo().comboboxnationalityselection).click()
       cy.get(this.selectorsListInfo().nationalityselection).click(this.selectorsListInfo.nationalityselection)
       cy.get(this.selectorsListInfo().comboboxmaritalselection).click()
